@@ -6,6 +6,9 @@ import os
 import re
 from pathlib import Path
 from typing import Dict, Any, List, Optional, Tuple
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from models import (
     DrugSafetyRequest, DrugSafetyResponse,
