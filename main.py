@@ -49,7 +49,9 @@ async def check_drug_safety(request: DrugSafetyRequest):
 
     cache_key = build_cache_key(
         proposed_medicines=request.proposed_medicines,
-        current_medications=request.patient_history.current_medications
+        current_medications=request.patient_history.current_medications,
+        known_allergies=request.patient_history.known_allergies,
+        conditions=request.patient_history.conditions,
     )
 
     cached_result = get_cached(cache_key)
