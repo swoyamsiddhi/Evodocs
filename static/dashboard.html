@@ -3,147 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EvoDoc Clinical Drug Safety Engine</title>
+    <title>EvoDoc — Clinical Drug Safety Engine</title>
+    <meta name="description" content="AI-powered clinical drug interaction, allergy, and contraindication checking for healthcare professionals.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="/static/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="app-container">
-        <header class="app-header glass-panel">
+    <div class="app-shell">
+
+        <!-- HEADER -->
+        <header class="app-header">
             <div class="logo">
-                <i class="fa-solid fa-staff-snake"></i>
-                <h1>EvoDoc <span class="subtitle">Safety Engine</span></h1>
+                <div class="logo-icon"><i class="fa-solid fa-staff-snake"></i></div>
+                <div class="logo-text">
+                    <span class="logo-name">EvoDoc</span>
+                    <span class="logo-sub">Safety Engine</span>
+                </div>
             </div>
-            <p class="description">AI-powered clinical drug interaction and allergy checking.</p>
+            <p class="header-desc"><i class="fa-solid fa-shield-heart"></i> AI-powered clinical drug interaction &amp; allergy checking</p>
         </header>
 
-        <main class="main-content">
-            <section class="input-section glass-panel">
-                <h2><i class="fa-solid fa-clipboard-user"></i> Patient & Prescription</h2>
-                
-                <form id="check-safety-form">
-                    <div class="form-group primary-group">
-                        <label for="proposed">Proposed Medicines <span class="required">*</span></label>
-                        <p class="help-text">Type a drug name and press Enter</p>
-                        <div class="tag-input-container">
-                            <ul id="proposed-tags" class="tag-list"></ul>
-                            <input type="text" id="proposed-input" placeholder="e.g. Aspirin, Amoxicillin">
+        <main class="main-layout">
+
+            <!-- LEFT: INPUT PANEL -->
+            <aside class="input-panel glass">
+                <div class="panel-title">
+                    <i class="fa-solid fa-clipboard-user"></i>
+                    <span>Patient &amp; Prescription</span>
+                </div>
+
+                <form id="check-safety-form" novalidate>
+
+                    <!-- Proposed Medicines -->
+                    <div class="field-group highlight-group">
+                        <label class="field-label">
+                            Proposed Medicines
+                            <span class="req-star">*</span>
+                        </label>
+                        <p class="field-hint">Type a drug name and press <kbd>Enter</kbd></p>
+                        <div class="tag-box" id="proposed-box">
+                            <ul class="tag-list" id="proposed-tags"></ul>
+                            <input type="text" id="proposed-input" placeholder="e.g. Warfarin, Aspirin" autocomplete="off">
                         </div>
                     </div>
 
-                    <div class="divider"></div>
+                    <div class="section-divider"><span>Patient History</span></div>
 
-                    <div class="form-section-title">Patient History</div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="age">Age (years)</label>
+                    <div class="field-row">
+                        <div class="field-group">
+                            <label class="field-label" for="age">Age (years)</label>
                             <input type="number" id="age" min="0" max="150" placeholder="e.g. 45">
                         </div>
-                        <div class="form-group">
-                            <label for="weight">Weight (kg)</label>
-                            <input type="number" id="weight" min="0" step="0.1" placeholder="e.g. 70.5">
+                        <div class="field-group">
+                            <label class="field-label" for="weight">Weight (kg)</label>
+                            <input type="number" id="weight" min="0" step="0.1" placeholder="e.g. 70">
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label>Current Medications</label>
-                        <p class="help-text">Drugs the patient is already taking</p>
-                        <div class="tag-input-container">
-                            <ul id="current-tags" class="tag-list"></ul>
-                            <input type="text" id="current-input" placeholder="e.g. Lisinopril">
+                    <div class="field-group">
+                        <label class="field-label">Current Medications</label>
+                        <p class="field-hint">Drugs the patient is already taking</p>
+                        <div class="tag-box" id="current-box">
+                            <ul class="tag-list" id="current-tags"></ul>
+                            <input type="text" id="current-input" placeholder="e.g. Lisinopril" autocomplete="off">
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label>Known Allergies</label>
-                        <p class="help-text">Drug classes or names (e.g. Penicillin)</p>
-                        <div class="tag-input-container">
-                            <ul id="allergies-tags" class="tag-list"></ul>
-                            <input type="text" id="allergies-input" placeholder="e.g. Sulfa drugs">
+                    <div class="field-group">
+                        <label class="field-label">Known Allergies</label>
+                        <p class="field-hint">Drug classes or names (e.g. Penicillin)</p>
+                        <div class="tag-box" id="allergies-box">
+                            <ul class="tag-list" id="allergies-tags"></ul>
+                            <input type="text" id="allergies-input" placeholder="e.g. Sulfa drugs" autocomplete="off">
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label>Conditions</label>
-                        <p class="help-text">Medical conditions (e.g. Kidney disease)</p>
-                        <div class="tag-input-container">
-                            <ul id="conditions-tags" class="tag-list"></ul>
-                            <input type="text" id="conditions-input" placeholder="e.g. Hypertension">
+                    <div class="field-group">
+                        <label class="field-label">Medical Conditions</label>
+                        <p class="field-hint">e.g. Kidney disease, Diabetes</p>
+                        <div class="tag-box" id="conditions-box">
+                            <ul class="tag-list" id="conditions-tags"></ul>
+                            <input type="text" id="conditions-input" placeholder="e.g. Heart failure" autocomplete="off">
                         </div>
                     </div>
 
-                    <button type="submit" class="btn-primary" id="submit-btn">
+                    <button type="submit" class="btn-analyze" id="submit-btn">
+                        <i class="fa-solid fa-microscope"></i>
                         <span>Analyze Safety</span>
-                        <i class="fa-solid fa-arrow-right"></i>
+                        <i class="fa-solid fa-arrow-right btn-arrow"></i>
                     </button>
                 </form>
-            </section>
+            </aside>
 
-            <section class="results-section">
-                <div id="loading-state" class="glass-panel state-panel hidden">
-                    <div class="spinner"></div>
-                    <h3>Analyzing Clinical Data</h3>
-                    <p>Consulting local medical LLM and cache...</p>
+            <!-- RIGHT: RESULTS PANEL -->
+            <section class="results-panel" id="results-panel">
+
+                <!-- Empty state -->
+                <div class="state-view glass" id="empty-state">
+                    <div class="state-icon"><i class="fa-solid fa-file-medical"></i></div>
+                    <h2>Ready to Analyze</h2>
+                    <p>Fill in the patient details on the left and click <strong>Analyze Safety</strong> to check for drug interactions, allergy cross-reactions, and contraindications.</p>
                 </div>
 
-                <div id="empty-state" class="glass-panel state-panel">
-                    <div class="empty-icon"><i class="fa-solid fa-file-medical"></i></div>
-                    <h3>No Analysis Yet</h3>
-                    <p>Enter the proposed medicines and patient history to check for safety and contraindications.</p>
+                <!-- Loading state -->
+                <div class="state-view glass hidden" id="loading-state">
+                    <div class="pulse-ring">
+                        <div class="pulse-dot"></div>
+                    </div>
+                    <h2>Analyzing Clinical Data</h2>
+                    <p>Consulting LLM and rule engine…</p>
                 </div>
 
-                <div id="results-state" class="hidden">
-                    <div class="summary-cards">
-                        <div class="summary-card glass-panel" id="card-safety">
-                            <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                            <div class="card-content">
-                                <h4>Safe to Prescribe</h4>
-                                <div class="value" id="res-safe">--</div>
+                <!-- Results -->
+                <div class="hidden" id="results-state">
+
+                    <!-- Doctor review banner -->
+                    <div class="review-banner hidden" id="review-banner">
+                        <i class="fa-solid fa-user-doctor"></i>
+                        <span>Physician review recommended before prescribing.</span>
+                    </div>
+
+                    <!-- Summary cards -->
+                    <div class="summary-grid">
+                        <div class="sum-card glass" id="card-safety">
+                            <div class="sum-card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                            <div class="sum-card-body">
+                                <div class="sum-card-label">Safe to Prescribe</div>
+                                <div class="sum-card-value" id="res-safe">--</div>
                             </div>
                         </div>
-                        <div class="summary-card glass-panel" id="card-risk">
-                            <div class="card-icon"><i class="fa-solid fa-gauge-high"></i></div>
-                            <div class="card-content">
-                                <h4>Overall Risk</h4>
-                                <div class="value" id="res-risk">--</div>
+                        <div class="sum-card glass" id="card-risk">
+                            <div class="sum-card-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                            <div class="sum-card-body">
+                                <div class="sum-card-label">Overall Risk</div>
+                                <div class="sum-card-value" id="res-risk">--</div>
                             </div>
                         </div>
-                        <div class="summary-card glass-panel" id="card-score">
-                            <div class="card-icon"><i class="fa-solid fa-chart-pie"></i></div>
-                            <div class="card-content">
-                                <h4>Risk Score</h4>
-                                <div class="value"><span id="res-score">--</span><span class="score-max">/100</span></div>
+                        <div class="sum-card glass" id="card-score">
+                            <div class="sum-card-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                            <div class="sum-card-body">
+                                <div class="sum-card-label">Risk Score</div>
+                                <div class="sum-card-value"><span id="res-score">--</span><span class="score-denom">/100</span></div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="metadata-row">
-                        <span class="badge" id="res-source"><i class="fa-solid fa-brain"></i> Source: <span>LLM</span></span>
-                        <span class="badge" id="res-cache"><i class="fa-solid fa-bolt"></i> Cache: <span>Miss</span></span>
-                        <span class="badge" id="res-time"><i class="fa-solid fa-stopwatch"></i> Time: <span>--</span> ms</span>
+                    <!-- Risk score bar -->
+                    <div class="risk-bar-wrap glass">
+                        <div class="risk-bar-header">
+                            <span class="risk-bar-title"><i class="fa-solid fa-sliders"></i> Risk Score Breakdown</span>
+                            <span class="risk-bar-total" id="rbd-total">0 / 100</span>
+                        </div>
+                        <div class="risk-bar-track">
+                            <div class="risk-bar-fill" id="risk-bar-fill"></div>
+                        </div>
+                        <div class="risk-bar-segments" id="rbd-segments"></div>
                     </div>
 
-                    <div class="alerts-container">
-                        <div class="alert-section" id="section-allergies">
-                            <h3 class="section-title critical"><i class="fa-solid fa-triangle-exclamation"></i> Allergy Alerts</h3>
-                            <div id="list-allergies" class="alert-list"></div>
+                    <!-- Meta chips -->
+                    <div class="meta-row">
+                        <span class="meta-chip" id="chip-source"><i class="fa-solid fa-brain"></i> <b>Source:</b> <span id="res-source-val">--</span></span>
+                        <span class="meta-chip" id="chip-cache"><i class="fa-solid fa-bolt"></i> <b>Cache:</b> <span id="res-cache-val">--</span></span>
+                        <span class="meta-chip"><i class="fa-solid fa-stopwatch"></i> <b>Time:</b> <span id="res-time-val">--</span> ms</span>
+                    </div>
+
+                    <!-- Alerts: tabs -->
+                    <div class="alerts-tabs-wrap glass">
+                        <div class="alerts-tabs" id="alerts-tabs" role="tablist">
+                            <button class="tab-btn active" role="tab" data-target="tab-interactions" id="tab-btn-interactions">
+                                <i class="fa-solid fa-bolt-lightning"></i> Interactions <span class="tab-count" id="cnt-interactions">0</span>
+                            </button>
+                            <button class="tab-btn" role="tab" data-target="tab-allergies" id="tab-btn-allergies">
+                                <i class="fa-solid fa-triangle-exclamation"></i> Allergies <span class="tab-count" id="cnt-allergies">0</span>
+                            </button>
+                            <button class="tab-btn" role="tab" data-target="tab-contraindications" id="tab-btn-contraindications">
+                                <i class="fa-solid fa-ban"></i> Contraindications <span class="tab-count" id="cnt-contraindications">0</span>
+                            </button>
                         </div>
 
-                        <div class="alert-section" id="section-contraindications">
-                            <h3 class="section-title warning"><i class="fa-solid fa-xmarks-lines"></i> Contraindications</h3>
-                            <div id="list-contraindications" class="alert-list"></div>
+                        <!-- Interactions tab -->
+                        <div class="tab-panel active" id="tab-interactions" role="tabpanel">
+                            <div class="alert-list" id="list-interactions">
+                                <div class="no-issues"><i class="fa-solid fa-circle-check"></i> No drug interactions detected.</div>
+                            </div>
                         </div>
 
-                        <div class="alert-section" id="section-interactions">
-                            <h3 class="section-title caution"><i class="fa-solid fa-bolt-lightning"></i> Drug Interactions</h3>
-                            <div id="list-interactions" class="alert-list"></div>
+                        <!-- Allergies tab -->
+                        <div class="tab-panel hidden" id="tab-allergies" role="tabpanel">
+                            <div class="alert-list" id="list-allergies">
+                                <div class="no-issues"><i class="fa-solid fa-circle-check"></i> No allergy alerts detected.</div>
+                            </div>
+                        </div>
+
+                        <!-- Contraindications tab -->
+                        <div class="tab-panel hidden" id="tab-contraindications" role="tabpanel">
+                            <div class="alert-list" id="list-contraindications">
+                                <div class="no-issues"><i class="fa-solid fa-circle-check"></i> No contraindications detected.</div>
+                            </div>
                         </div>
                     </div>
-                </div>
+
+                </div><!-- /results-state -->
             </section>
         </main>
     </div>
