@@ -1,0 +1,166 @@
+{
+  "version": "1.0",
+  "last_reviewed": "2024-01-01",
+  "disclaimer": "Rule-based fallback dataset. For clinical reference only.",
+  "interactions": [
+    {
+      "drug_a": "warfarin",
+      "drug_b": "aspirin",
+      "severity": "high",
+      "mechanism": "Aspirin inhibits platelet aggregation and can displace warfarin from plasma proteins, increasing free warfarin concentration and anticoagulant effect.",
+      "clinical_recommendation": "Avoid combination if possible. If necessary, monitor INR closely and watch for signs of bleeding. Consider GI prophylaxis."
+    },
+    {
+      "drug_a": "warfarin",
+      "drug_b": "ibuprofen",
+      "severity": "high",
+      "mechanism": "NSAIDs inhibit COX-1-mediated platelet aggregation and can cause GI mucosal damage, significantly increasing bleeding risk in anticoagulated patients.",
+      "clinical_recommendation": "Avoid combination. Use paracetamol (acetaminophen) for pain if anticoagulation is required. If NSAID is essential, reduce warfarin dose and monitor INR daily."
+    },
+    {
+      "drug_a": "warfarin",
+      "drug_b": "metronidazole",
+      "severity": "high",
+      "mechanism": "Metronidazole inhibits CYP2C9, the primary enzyme metabolizing warfarin, leading to dramatically elevated warfarin plasma levels and INR.",
+      "clinical_recommendation": "Reduce warfarin dose by 30-50% when initiating metronidazole. Monitor INR every 2-3 days during concurrent use and 1 week after completion."
+    },
+    {
+      "drug_a": "warfarin",
+      "drug_b": "ciprofloxacin",
+      "severity": "high",
+      "mechanism": "Ciprofloxacin inhibits CYP1A2 and displaces warfarin from protein binding sites, elevating free warfarin and INR unpredictably.",
+      "clinical_recommendation": "Monitor INR within 2-3 days of initiating ciprofloxacin. Be prepared to reduce warfarin dose. Consider alternative antibiotic if feasible."
+    },
+    {
+      "drug_a": "lisinopril",
+      "drug_b": "spironolactone",
+      "severity": "high",
+      "mechanism": "ACE inhibitors (lisinopril) reduce aldosterone-mediated potassium excretion; spironolactone (potassium-sparing diuretic) further blocks potassium excretion, causing dangerous hyperkalemia.",
+      "clinical_recommendation": "Use only with close potassium monitoring (serum K+ weekly initially). Avoid in patients with baseline K+ > 5.0 mEq/L or CrCl < 30 mL/min."
+    },
+    {
+      "drug_a": "sertraline",
+      "drug_b": "phenelzine",
+      "severity": "high",
+      "mechanism": "Combining an SSRI with an MAOI causes serotonin syndrome: excessive serotonergic activity leading to hyperthermia, agitation, clonus, and potentially death.",
+      "clinical_recommendation": "CONTRAINDICATED. Allow 14-day washout after stopping MAOI before starting SSRI. Allow 14 days after stopping most SSRIs (5 weeks for fluoxetine)."
+    },
+    {
+      "drug_a": "metformin",
+      "drug_b": "ibuprofen",
+      "severity": "medium",
+      "mechanism": "NSAIDs reduce renal blood flow and GFR, potentially causing metformin accumulation and increasing risk of lactic acidosis in patients with marginal renal function.",
+      "clinical_recommendation": "Monitor renal function (creatinine, eGFR) if combination is necessary. Hold metformin if acute kidney injury suspected."
+    },
+    {
+      "drug_a": "atorvastatin",
+      "drug_b": "clarithromycin",
+      "severity": "high",
+      "mechanism": "Clarithromycin is a potent CYP3A4 inhibitor; atorvastatin is primarily metabolized by CYP3A4. Inhibition leads to markedly elevated statin levels and myopathy/rhabdomyolysis risk.",
+      "clinical_recommendation": "Temporarily discontinue atorvastatin during clarithromycin therapy. Use azithromycin as an alternative antibiotic if statin cannot be stopped."
+    },
+    {
+      "drug_a": "digoxin",
+      "drug_b": "amiodarone",
+      "severity": "high",
+      "mechanism": "Amiodarone inhibits P-glycoprotein and CYP3A4, reducing digoxin clearance and increasing plasma levels. Also both drugs slow AV conduction, increasing bradycardia risk.",
+      "clinical_recommendation": "Reduce digoxin dose by 50% when initiating amiodarone. Monitor serum digoxin levels and ECG closely."
+    },
+    {
+      "drug_a": "clopidogrel",
+      "drug_b": "omeprazole",
+      "severity": "medium",
+      "mechanism": "Omeprazole inhibits CYP2C19, the enzyme responsible for converting clopidogrel (a prodrug) to its active thiol metabolite, reducing antiplatelet efficacy.",
+      "clinical_recommendation": "Use pantoprazole instead of omeprazole for GI protection in patients on clopidogrel, as pantoprazole has less CYP2C19 inhibition."
+    },
+    {
+      "drug_a": "lithium",
+      "drug_b": "ibuprofen",
+      "severity": "high",
+      "mechanism": "NSAIDs inhibit prostaglandin synthesis in the kidney, reducing renal lithium clearance and causing lithium toxicity.",
+      "clinical_recommendation": "Avoid NSAIDs in patients on lithium. Use paracetamol if analgesia is needed. If NSAID is essential, monitor serum lithium levels closely."
+    },
+    {
+      "drug_a": "sildenafil",
+      "drug_b": "isosorbide mononitrate",
+      "severity": "high",
+      "mechanism": "Both drugs cause vasodilation via different pathways (PDE5 inhibition and nitric oxide donation). Combination causes profound, potentially fatal hypotension.",
+      "clinical_recommendation": "ABSOLUTELY CONTRAINDICATED. Do not combine any PDE5 inhibitor with any nitrate. Allow 24 hours after sildenafil before nitrate use (48 hours for tadalafil)."
+    },
+    {
+      "drug_a": "methotrexate",
+      "drug_b": "naproxen",
+      "severity": "high",
+      "mechanism": "NSAIDs reduce renal clearance of methotrexate by competing for tubular secretion, causing methotrexate toxicity (mucositis, cytopenias, nephrotoxicity).",
+      "clinical_recommendation": "Avoid combination. If NSAID must be used, withhold methotrexate and monitor CBC and renal function closely. High-dose methotrexate + NSAIDs is absolutely contraindicated."
+    },
+    {
+      "drug_a": "tramadol",
+      "drug_b": "sertraline",
+      "severity": "medium",
+      "mechanism": "Tramadol has serotonergic activity and inhibits serotonin reuptake. Combined with SSRIs, there is a meaningful risk of serotonin syndrome.",
+      "clinical_recommendation": "Use with caution. Monitor for signs of serotonin syndrome (tremor, agitation, hyperthermia, clonus). Consider alternative analgesic."
+    },
+    {
+      "drug_a": "amlodipine",
+      "drug_b": "simvastatin",
+      "severity": "medium",
+      "mechanism": "Amlodipine modestly inhibits CYP3A4, which metabolizes simvastatin. This can increase simvastatin levels and risk of myopathy, especially at high simvastatin doses.",
+      "clinical_recommendation": "Cap simvastatin dose at 20mg/day when co-administered with amlodipine. Consider switching to atorvastatin or rosuvastatin which are less affected."
+    },
+    {
+      "drug_a": "fluoxetine",
+      "drug_b": "tamoxifen",
+      "severity": "high",
+      "mechanism": "Fluoxetine is a potent CYP2D6 inhibitor; tamoxifen requires CYP2D6 for conversion to its active metabolite endoxifen. Inhibition reduces efficacy of tamoxifen in breast cancer treatment.",
+      "clinical_recommendation": "Avoid fluoxetine in patients on tamoxifen. Use sertraline or venlafaxine (weaker CYP2D6 inhibitors) for depression/hot flashes in this population."
+    }
+  ],
+  "allergy_cross_reactions": {
+    "penicillin": ["amoxicillin", "ampicillin", "cloxacillin", "flucloxacillin", "piperacillin", "cephalexin", "cefazolin", "ceftriaxone"],
+    "sulfonamide": ["sulfamethoxazole", "trimethoprim-sulfamethoxazole", "sulfadiazine", "furosemide", "hydrochlorothiazide", "celecoxib"],
+    "nsaids": ["aspirin", "ibuprofen", "naproxen", "diclofenac", "indomethacin", "ketorolac", "meloxicam", "celecoxib", "naproxen"],
+    "fluoroquinolone": ["ciprofloxacin", "levofloxacin", "moxifloxacin", "ofloxacin", "norfloxacin"],
+    "cephalosporin": ["cephalexin", "cefazolin", "ceftriaxone", "cefuroxime", "cefdinir"],
+    "macrolide": ["azithromycin", "clarithromycin", "erythromycin"],
+    "tetracycline": ["doxycycline", "minocycline", "tetracycline"],
+    "aminoglycoside": ["gentamicin", "tobramycin", "amikacin", "streptomycin"]
+  },
+  "condition_contraindications": {
+    "kidney disease": {
+      "drugs": ["ibuprofen", "naproxen", "diclofenac", "indomethacin", "ketorolac", "metformin", "lithium", "gentamicin", "tobramycin"],
+      "severity": "high",
+      "reason": "Impaired renal clearance leads to drug accumulation and/or direct nephrotoxicity"
+    },
+    "liver disease": {
+      "drugs": ["paracetamol", "methotrexate", "isoniazid", "statins", "ketoconazole"],
+      "severity": "high",
+      "reason": "Reduced hepatic metabolism increases drug toxicity risk"
+    },
+    "heart failure": {
+      "drugs": ["ibuprofen", "naproxen", "diclofenac", "verapamil", "diltiazem", "thiazolidinediones"],
+      "severity": "high",
+      "reason": "NSAIDs cause sodium/water retention worsening heart failure; negative inotropes reduce cardiac output"
+    },
+    "asthma": {
+      "drugs": ["aspirin", "ibuprofen", "naproxen", "beta-blockers", "propranolol", "atenolol"],
+      "severity": "high",
+      "reason": "NSAIDs can trigger aspirin-exacerbated respiratory disease; beta-blockers cause bronchoconstriction"
+    },
+    "diabetes": {
+      "drugs": ["corticosteroids", "prednisone", "dexamethasone", "thiazide diuretics"],
+      "severity": "medium",
+      "reason": "These drugs raise blood glucose, complicating diabetes management"
+    },
+    "pregnancy": {
+      "drugs": ["ibuprofen", "naproxen", "aspirin", "tetracycline", "doxycycline", "warfarin", "methotrexate", "thalidomide"],
+      "severity": "high",
+      "reason": "Teratogenic risk or adverse fetal effects — contraindicated in pregnancy"
+    },
+    "peptic ulcer": {
+      "drugs": ["aspirin", "ibuprofen", "naproxen", "diclofenac", "corticosteroids"],
+      "severity": "high",
+      "reason": "NSAIDs and corticosteroids inhibit prostaglandin-mediated mucosal protection, worsening peptic ulcers"
+    }
+  }
+}

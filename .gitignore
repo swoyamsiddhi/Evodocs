@@ -13,4 +13,4 @@ dist/
 .DS_Store
 
 # Application data
-data/fallback_interactions.json
+# data/fallback_interactions.json  ← kept in repo; required for Railway fallback mode
