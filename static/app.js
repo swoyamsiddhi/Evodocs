@@ -167,40 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (risk === 'medium') cardRisk.className = 'sum-card glass medium';
         else cardRisk.className = 'sum-card glass safe';
 
-        // Risk bar
-        const fill = document.getElementById('risk-bar-fill');
-        fill.style.width = '0%';
-        requestAnimationFrame(() => {
-            fill.style.width = `${Math.min(100, score)}%`;
-        });
-        fill.style.background = score >= 60
-            ? 'linear-gradient(90deg, #F5A623, #FF5555)'
-            : score >= 30
-                ? 'linear-gradient(90deg, #4F7FFF, #F5A623)'
-                : 'linear-gradient(90deg, #4F7FFF, #2DD4BF)';
-
-        document.getElementById('rbd-total').textContent = `${score} / 100`;
-
-        // Risk breakdown segments
-        const rbd = data.risk_score_breakdown || {};
-        const segEl = document.getElementById('rbd-segments');
-        segEl.innerHTML = '';
-        const segments = [
-            { label: 'Base', key: 'base_score',               icon: 'fa-user' },
-            { label: 'Interactions', key: 'interaction_penalty', icon: 'fa-bolt-lightning' },
-            { label: 'Allergies', key: 'allergy_penalty',        icon: 'fa-triangle-exclamation' },
-            { label: 'Contraindications', key: 'contraindication_penalty', icon: 'fa-ban' },
-            { label: 'Multiplier', key: 'high_severity_multiplier', icon: 'fa-xmark', isMultiplier: true },
-        ];
-        segments.forEach(seg => {
-            const val = rbd[seg.key];
-            if (val === undefined || val === null) return;
-            const chip = document.createElement('div');
-            chip.className = 'segment-chip';
-            const display = seg.isMultiplier ? `×${val.toFixed(1)}` : `+${val}`;
-            chip.innerHTML = `<i class="fa-solid ${seg.icon}"></i>${seg.label}: <span class="seg-val">${display}</span>`;
-            segEl.appendChild(chip);
-        });
+        // Risk breakdown logic removed to match new UI
 
         // Meta chips
         const srcEl  = document.getElementById('chip-source');
